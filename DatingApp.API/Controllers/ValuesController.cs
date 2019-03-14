@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DatingApp.API.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.API.Controllers
 {
     //GET http://localhost:5000/api/values/
+    [Authorize]
     [Route("api/[controller]")] 
     [ApiController]  //In order to use this attribute we need to specify Route
     public class ValuesController : ControllerBase //new controller inherites from the ControllerBase. It gives an access to HTTP requests
@@ -18,6 +20,7 @@ namespace DatingApp.API.Controllers
         {
             _context = context;
         }
+        
         // GET api/values
         [HttpGet]
         //we need to make the code asynhronius for the case of scalable app (many diff requests to DB)
@@ -30,6 +33,7 @@ namespace DatingApp.API.Controllers
             //return new string[] { "value1", "value2" };
         }
 
+        [AllowAnonymous]
         // GET api/values/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetValue(int id) //also async method

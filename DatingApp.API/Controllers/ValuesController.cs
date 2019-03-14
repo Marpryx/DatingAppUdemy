@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore;
 namespace DatingApp.API.Controllers
 {
     //GET http://localhost:5000/api/values/
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ValuesController : ControllerBase
+    [Route("api/[controller]")] 
+    [ApiController]  //In order to use this attribute we need to specify Route
+    public class ValuesController : ControllerBase //new controller inherites from the ControllerBase. It gives an access to HTTP requests
     {
         private readonly DataContext _context;  //_ to show that it's private fild. Not mandatory
         public ValuesController(DataContext context)

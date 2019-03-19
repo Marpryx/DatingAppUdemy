@@ -21,8 +21,8 @@ namespace DatingApp.API.Controllers
             _context = context;
         }
         
-        // GET api/values
-        [HttpGet]
+        [AllowAnonymous]
+        [HttpGet]// GET api/values
         //we need to make the code asynhronius for the case of scalable app (many diff requests to DB)
         public async Task<IActionResult> GetValues() //Added async and Task - represents asynchronius operation that returns value
         {

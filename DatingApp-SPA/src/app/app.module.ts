@@ -1,22 +1,35 @@
+import { AuthService } from './_services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http'; //import in order to use http client
+import {FormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ValueComponent } from './value/value.component';
+//import { ValueComponent } from './value/value.component';
+import { NavComponent } from './nav/nav.component';
+import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
    declarations: [
       AppComponent,
-      ValueComponent //was added auto because of extensions generate
+      //ValueComponent,
+      //was added auto because of extensions generate
+      NavComponent,
+      HomeComponent,
+      RegisterComponent
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
-      HttpClientModule //needs to be imported in order to use httpClents services (to do get requests)
+      HttpClientModule,
+      //needs to be imported in order to use httpClentsservices(todogetrequests)
+      FormsModule
    ],
-   providers: [],
+   providers: [
+      AuthService//added in order authservice to be working_services/auth
+   ],
    bootstrap: [
       AppComponent
    ]

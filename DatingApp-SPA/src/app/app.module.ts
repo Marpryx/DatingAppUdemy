@@ -1,8 +1,10 @@
+import { AlertifyService } from './_services/alertify.service';
 import { AuthService } from './_services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http'; //import in order to use http client
 import {FormsModule} from '@angular/forms';
+import { BsDropdownModule } from 'ngx-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,11 +28,13 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
       AppRoutingModule,
       HttpClientModule,
       //needs to be imported in order to use httpClentsservices(todogetrequests)
-      FormsModule
+      FormsModule,
+      BsDropdownModule.forRoot()
    ],
    providers: [
       AuthService,//added in order authservice to be working_services/auth
-      ErrorInterceptorProvider
+      ErrorInterceptorProvider,
+      AlertifyService
    ],
    bootstrap: [
       AppComponent

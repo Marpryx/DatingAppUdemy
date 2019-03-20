@@ -1,5 +1,6 @@
 import { AuthService } from './../_services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
   model: any = {};
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService, private alertify: AlertifyService) { }
 
   ngOnInit() {
   }
@@ -16,19 +17,21 @@ export class NavComponent implements OnInit {
   login(){
     //console.log(this.model);
     this.authService.login(this.model).subscribe(next => {
-      console.log('Logged in succsessfully');
+      this.alertify.success('Logged in succsessfully');
     }, error => {
-      console.log(error);
+      this.alertify.error(error);
     }); //because it return Observable we need to subscrube to the method
   }
 
-  loggedIn(){
-    const token = localStorage.getItem('token');
-    return !!token;
+  loggedIn() {
+    // const token = localStorage.getItem('token');
+    // return !!token;
+
+    return this.authService.loggedIn();
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('token');
-    console.log("logged out");
+    this.alertify.message('logged out');
   }
 }

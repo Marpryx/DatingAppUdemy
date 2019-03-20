@@ -56,7 +56,9 @@ namespace DatingApp.API.Controllers
         [HttpPost("login")] //login - path
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
-            //checked the the username and pass mathes username and pass stored in DB
+          
+         //   throw new Exception("Computer says no!");
+               //checked the the username and pass mathes username and pass stored in DB
             var userFromRepo = await _repo.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
 
             if (userFromRepo == null)
@@ -94,7 +96,7 @@ namespace DatingApp.API.Controllers
                 token = tokenHandler.WriteToken(token)
             });
 
-    }
+        }
 
     }
 }
